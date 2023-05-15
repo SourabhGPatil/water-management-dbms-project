@@ -63,10 +63,6 @@ class Check:
             self.newWindow = Toplevel(self.master)
             self.app = Window3(self.newWindow)
     
-        
-
-
-
 
 
 #~~~creates Window1 for Admin Login~~~###
@@ -420,8 +416,6 @@ class Customer:
 
 
 
-
-
 ###~~~OFFICER Class~~~###
 class Officer:
     
@@ -586,8 +580,6 @@ class Officer:
         self.btnUpdate = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Update" ,padx = 24, width = 8, height  = 1, command = update).grid(row = 0, column = 3, padx = 1)
         self.btnReset = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Reset" ,padx = 24, width = 8, height  = 1, command = iReset).grid(row = 0, column = 4, padx = 1)
         self.btnExit = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Exit" ,padx = 24, width = 8, height  = 1, command = iExit).grid(row = 0, column = 5, padx = 1)
-
-
 
 
 ###~~~BILLS Class~~~###
@@ -763,7 +755,6 @@ class Bills:
 
         self.billinglist.bind("<ButtonRelease-1>", billingREC)
         displayData()
-
 
 
 ###~~~LOCALITY Class~~~###
@@ -963,7 +954,6 @@ class Locality:
         displayData()
 
 
-
 ###~~~RESERVOIR Class~~~###
 class Reservoir:
     ###~~~RESERVOIR DB~~~###
@@ -1127,16 +1117,6 @@ class Reservoir:
 
 
 
-
-
-
-
-
-
-
-
-
-
 ###~~~creates Window2 for Customer Login~~~###
 class Window2:
     def __init__(self, root):
@@ -1163,9 +1143,6 @@ class Window2:
 
         TopFrame1 = Frame(MainFrame, bd = 5, width = 1340, height = 500, relief = RIDGE)
         TopFrame1.grid(row = 3, column = 0)
-
-
-
 
 
         ###~~~Customer Login Frames~~~###
@@ -1277,8 +1254,6 @@ class Window2:
 
         ###~~~Customer Login Button~~~###
         self.btn = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Show Details" ,padx = 24, width = 8, height  = 1, command = lambda: my_details(self.t1.get('1.0',END))).grid(row = 0, column = 0, padx = 1)
-
-
 
 
 
@@ -1480,10 +1455,6 @@ class Window3:
 
         self.OfficerCustomerList.bind("<ButtonRelease-1>", OfficerCustomerREC)
         displayData()
-
-
-
-
 
 
 if __name__ == '__main__':

@@ -1,10 +1,13 @@
+#Importing the necessary modules
 import sqlite3
 import dates as dates
 from datetime import datetime as dt
 import datetime as datetime
 from tkinter import *
-#BACKEND
 
+
+#BACKEND
+#Query to create the OFFICER table
 def officerData():
     con = sqlite3.connect("backend.db")
     cur = con.cursor()
@@ -13,6 +16,7 @@ def officerData():
     con.commit()
     con.close()
 
+#Query to add an officer to the OFFICER table
 def addOfficer(id, Name, sector_no):
     con = sqlite3.connect("backend.db")
     cur = con.cursor()
@@ -21,6 +25,7 @@ def addOfficer(id, Name, sector_no):
     con.commit()
     con.close()
 
+#Query to view all the officers from the OFFICER table
 def viewOfficer():
     con = sqlite3.connect("backend.db")
     cur = con.cursor()
@@ -30,6 +35,7 @@ def viewOfficer():
     con.close()
     return rows
 
+#Query to delete a officer from the OFFICER table
 def delOfficer(id):
     con = sqlite3.connect("backend.db")
     cur = con.cursor()
@@ -38,6 +44,7 @@ def delOfficer(id):
     con.commit()
     con.close()
 
+#Query to view customers associated with a specific officer
 def officerView(officer_id):
     con = sqlite3.connect("backend.db")
     cur = con.cursor()
@@ -46,6 +53,7 @@ def officerView(officer_id):
     con.close()
     return rows
 
+#Query to create the RESERVOIR table
 def reservoirData():
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -54,6 +62,7 @@ def reservoirData():
     con.commit()
     con.close()
 
+#Query to add a reservoir to the RESERVOIR table
 def addReservoir(id, Name, Water_level):
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -62,6 +71,7 @@ def addReservoir(id, Name, Water_level):
     con.commit()
     con.close()
 
+#Query to delete a reservoir from the RESERVOIR table
 def delReservoir(id):
     con = sqlite3.connect("backend.db")
     cur = con.cursor()
@@ -70,6 +80,7 @@ def delReservoir(id):
     con.commit()
     con.close()
 
+#Query to view all the reservoirs from the RESERVOIR table
 def viewReservoir():
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -79,6 +90,7 @@ def viewReservoir():
     con.close()
     return rows
 
+#Query to create the BILLS table
 def billData():
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -87,6 +99,7 @@ def billData():
     con.commit()
     con.close()
 
+#Query to add a bill to the BILLS table
 def addBill(id, customer_id, Payments_Due, due_Date):
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -95,6 +108,7 @@ def addBill(id, customer_id, Payments_Due, due_Date):
     con.commit()
     con.close()
 
+#Query to delete a bill from the BILLS table
 def delBill(id):
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -103,6 +117,7 @@ def delBill(id):
     con.commit()
     con.close()
 
+#Query to view all the bills from the BILLS table
 def viewBill():
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -112,6 +127,7 @@ def viewBill():
     con.close()
     return rows
 
+#Query to create the Locality table
 def localityData():
     con = sqlite3.connect('backend.db')
     cur = con.cursor()
@@ -120,36 +136,6 @@ def localityData():
     con.commit()
     con.close()
 
-def updateDateEveryday():
-    seclist = []
-    nextdate = 4
-    d = 0
-    today = (datetime.date.today())
-    timedelta = (datetime.timedelta(days = nextdate))
-    con = sqlite3.connect('backend.db')
-    cur = con.cursor()
-    cur.execute("SELECT Water_Supply_Date FROM Locality")
-    dAteS = cur.fetchall()
-    for every in dAteS:
-        EveryDate = every[0]
-        string_date = changeToDate(EveryDate)
-        seclist.append(string_date)
-    appended_Date = today + timedelta
-    for all in seclist:
-        if all == datetime.date.today():
-            seclist[d] = appended_Date
-        d=d+1
-    for all in seclist:
-        dst = changeToString(all)
-        cur.execute("UPDATE Locality SET Water_Supply_Date = ? WHERE TRUE",(dst,))
-    con.commit()
-    cur.close()
-
-def changeToDate(strng):
-    return dt.strptime(strng, '%d %B %Y').date()
-
-def changeToString(date):
-    return date.strftime('%d %B %Y')
 
 def addLocality(sector_no, Area_Name, Water_Supply_Date, officer_id, reservoir_id):
     con = sqlite3.connect('backend.db')
@@ -216,6 +202,38 @@ def viewCustomerFromOfficerID(officer_id):
     rows = cur.fetchall()
     con.close()
     return rows
+
+#Function to update the dates everyday
+def updateDateEveryday():
+    seclist = []
+    nextdate = 4
+    d = 0
+    today = (datetime.date.today())
+    timedelta = (datetime.timedelta(days = nextdate))
+    con = sqlite3.connect('backend.db')
+    cur = con.cursor()
+    cur.execute("SELECT Water_Supply_Date FROM Locality")
+    dAteS = cur.fetchall()
+    for every in dAteS:
+        EveryDate = every[0]
+        string_date = changeToDate(EveryDate)
+        seclist.append(string_date)
+    appended_Date = today + timedelta
+    for all in seclist:
+        if all == datetime.date.today():
+            seclist[d] = appended_Date
+        d=d+1
+    for all in seclist:
+        dst = changeToString(all)
+        cur.execute("UPDATE Locality SET Water_Supply_Date = ? WHERE TRUE",(dst,))
+    con.commit()
+    cur.close()
+
+def changeToDate(strng):
+    return dt.strptime(strng, '%d %B %Y').date()
+
+def changeToString(date):
+    return date.strftime('%d %B %Y')
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~UPDATES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

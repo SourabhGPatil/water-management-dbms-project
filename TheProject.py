@@ -11,8 +11,7 @@ import backend
 import sqlite3
 my_conn = sqlite3.connect('backend.db')
 
-
-
+# Function to start the application
 def main():
     root = Tk()
     app = Check(root)

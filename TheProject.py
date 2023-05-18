@@ -17,7 +17,6 @@ def main():
     app = Check(root)
 
 ####~~~~~~~~~~Home Window~~~~~~~~~~####
-    
 class Check:
     def __init__(self,master):
         self.master = master
@@ -62,8 +61,6 @@ class Check:
             self.newWindow = Toplevel(self.master)
             self.app = Window3(self.newWindow)
     
-
-
 #~~~creates Window1 for Admin Login~~~###
 class Window1:
     def __init__(self,master):

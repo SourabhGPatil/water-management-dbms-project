@@ -300,7 +300,7 @@ class Customer:
             
 
 
-        ###~~~CUSTOMER Frames~~~###
+        ###~~~CUSTOMER Frames~~~####
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
 

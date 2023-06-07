@@ -13,53 +13,53 @@ my_conn = sqlite3.connect('backend.db')
 
 # Function to start the application
 def main():
-    root = Tk()
-    app = Check(root)
+    root = Tk() # Create a Tkinter root window
+    app = Check(root) # Create an instance of the Check class
 
 ####~~~~~~~~~~Home Window~~~~~~~~~~####
 class Check:
     def __init__(self,master):
         self.master = master
-        self.master.title("Home Page")
-        self.master.geometry('1920x1080+0+0')
+        self.master.title("Home Page") # Set the title of the window
+        self.master.geometry('1920x1080+0+0') # Set the dimensions and position of the window
         self.master.rowconfigure(0, weight=1)
         self.master.columnconfigure(0, weight=1)
-        self.master.config(bg = 'powder blue')
-        self.frame = Frame(self.master, bg = 'powder blue')
+        self.master.config(bg = 'powder blue') # Set the background color of the window
+        self.frame = Frame(self.master, bg = 'powder blue')  # Create a frame within the window
         self.frame.pack()
 
         ###~~~Home Window Title~~~###
         
-        self.lblTitle = Label(self.frame, text = 'Home Page', font=('arial',50,'bold'), bg='powder blue', fg='black')
-        self.lblTitle.grid(row=0,column=0,columnspan=2,pady=40)
+        self.lblTitle = Label(self.frame, text = 'Home Page', font=('arial',50,'bold'), bg='powder blue', fg='black') # Create a label for the title
+        self.lblTitle.grid(row=0,column=0,columnspan=2,pady=40) # Place the label in the frame
 
         ###~~~Buttons~~~###
-        self.LoginFrame = LabelFrame(self.frame, width=1000, height=600, font=('arial',20,'bold'), relief='ridge', bg='cadet blue', bd=20)
-        self.LoginFrame.grid(row=2, column=0)
+        self.LoginFrame = LabelFrame(self.frame, width=1000, height=600, font=('arial',20,'bold'), relief='ridge', bg='cadet blue', bd=20) # Create a labeled frame
+        self.LoginFrame.grid(row=2, column=0) # Place the labeled frame in the frame
 
-        self.btnCustomer = Button(self.LoginFrame, text = 'Customer', width = 17,font=('arial',20,'bold'),command = self.CustomerLogin)
-        self.btnCustomer.grid(row=1,column=1,pady=20,padx=8)
+        self.btnCustomer = Button(self.LoginFrame, text = 'Customer', width = 17,font=('arial',20,'bold'),command = self.CustomerLogin) # Create a button for customer login
+        self.btnCustomer.grid(row=1,column=1,pady=20,padx=8) # Place the button in the labeled frame
 
-        self.btnAdmin = Button(self.LoginFrame, text = 'Admin', width = 17,font=('arial',20,'bold'), command = self.AdminLogin)
-        self.btnAdmin.grid(row=2,column=1,pady=20,padx=8)
+        self.btnAdmin = Button(self.LoginFrame, text = 'Admin', width = 17,font=('arial',20,'bold'), command = self.AdminLogin) # Create a button for admin login
+        self.btnAdmin.grid(row=2,column=1,pady=20,padx=8) # Place the button in the labeled frame
 
-        self.btnOfficer = Button(self.LoginFrame, text = 'Officer', width = 17,font=('arial',20,'bold'), command = self.OfficerLogin)
-        self.btnOfficer.grid(row=3,column=1,pady=20,padx=8)
+        self.btnOfficer = Button(self.LoginFrame, text = 'Officer', width = 17,font=('arial',20,'bold'), command = self.OfficerLogin) # Create a button for officer login
+        self.btnOfficer.grid(row=3,column=1,pady=20,padx=8) # Place the button in the labeled frame
 
     ###~~~Admin Login Redirect~~~###
     def AdminLogin(self):
-            self.newWindow = Toplevel(self.master)
-            self.app = Window1(self.newWindow)
+            self.newWindow = Toplevel(self.master) # Create a new top-level window
+            self.app = Window1(self.newWindow)   # Create an instance of the Window1 class. i.e., Redirect to Admin's Login Page
             
     ###~~~Customer Login Redirect~~~###
     def CustomerLogin(self):
-            self.newWindow = Toplevel(self.master)
-            self.app = Window2(self.newWindow)
+            self.newWindow = Toplevel(self.master) # Create a new top-level window
+            self.app = Window2(self.newWindow) # Create an instance of the Window2 class. i.e., Redirect to Customer's Login Page
 
     ###~~~Officer Login Redirect~~~###
     def OfficerLogin(self):
-            self.newWindow = Toplevel(self.master)
-            self.app = Window3(self.newWindow)
+            self.newWindow = Toplevel(self.master) # Create a new top-level window
+            self.app = Window3(self.newWindow) # Create an instance of the Window3 class. i.e., Redirect to Officer's Login Page
     
 #~~~creates Window1 for Admin Login~~~###
 class Window1:
@@ -74,8 +74,8 @@ class Window1:
         self.frame.pack()
 
         ###~~~User Input~~~###
-        self.Username = StringVar()
-        self.Password = StringVar()
+        self.Username = StringVar() # Variable to store the username
+        self.Password = StringVar() # Variable to store the password
         
         ###~~~Window1 Title~~~###
         self.lblTitle = Label(self.frame, text = 'Admin Login Page', font=('arial',50,'bold'), bg='powder blue', fg='black')
@@ -160,34 +160,36 @@ class Window1:
 
     ###~~~Button Functions~~~###
     def Login_System(self):
-        u=(self.Username.get())
-        p=(self.Password.get())
-        if(u==str('Kevin')and p==str('Owens')): #The Username is : "Kevin" and the Password is : "Owens"
+        u=(self.Username.get()) # Get the value of the username entered
+        p=(self.Password.get()) # Get the value of the password entered
+        if(u==str('Kevin')and p==str('Owens')): #The Username is set to : "Kevin" and the Password is set to : "Owens"
+            # If the credentials are correct, enable the below given buttons
             self.btnCustomer.config(state = NORMAL)
             self.btnOfficer.config(state = NORMAL)
             self.btnBills.config(state = NORMAL)
             self.btnLocality.config(state = NORMAL)
             self.btnReservoir.config(state = NORMAL)
         else:
-            tkinter.messagebox.askyesno("Error","The entered details are wrong")
-            self.btnUser.config(state = DISABLED)
+            tkinter.messagebox.askyesno("Error","The entered details are wrong") # Show an error message box if wrong credentials are entered
+            #Disable the below given buttons
+            self.btnUser.config(state = DISABLED) 
             self.btnOfficer.config(state = DISABLED)
-            self.Username.set("")
-            self.Password.set("")
-            self.txtUsername.focus()
+            self.Username.set("") # Clear the username entry field
+            self.Password.set("") # Clear the password entry field
+            self.txtUsername.focus() # Set the focus back to the username entry field
 
     def Reset(self):
-        self.Username.set("")
-        self.Password.set("")
+        self.Username.set("") # Clear the value of the username
+        self.Password.set("") # Clear the value of the password
 
 
     def iExit(self):
         self.iExit = tkinter.messagebox.askyesno("Exit", "Confirm if you want to exit")
-        if self.iExit > 0:
-            self.master.destroy()
+        if self.iExit > 0: # If the user confirms the exit
+            self.master.destroy() # Destroy the main window and exit the application
         else:
-            command=self.new_window
-            return
+            command=self.new_window # Store the command to open a new window
+            return # Return from the function without taking any further action
 
 
 

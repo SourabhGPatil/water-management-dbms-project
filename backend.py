@@ -300,6 +300,7 @@ def dataOfficerUpdate(id="", Name="", sector_no=""):
     con.commit()
     con.close()
 
+#Calling the methods
 officerData()
 reservoirData()
 billData()

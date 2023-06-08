@@ -198,6 +198,7 @@ class Customer:
 
     ###~~~CUSTOMER DB~~~###
     def __init__(self, root):
+        # Initialize the Customer class with the given root window 
         self.root = root
         blank_space = " "
         self.root.title(200 * blank_space + "Customer DB")
@@ -205,32 +206,35 @@ class Customer:
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
 
-        id = StringVar()
-        Name = StringVar()
-        Address = StringVar()
-        sector_no = StringVar()
-        officer_id = StringVar()
-        reservoir_id = StringVar()
-        no_of_connection = StringVar()
+        id = StringVar() # Variable to store the customer ID
+        Name = StringVar()  # Variable to store the customer name
+        Address = StringVar()  # Variable to store the customer address
+        sector_no = StringVar()  # Variable to store the sector number
+        officer_id = StringVar()  # Variable to store the officer ID
+        reservoir_id = StringVar()  # Variable to store the reservoir ID
+        no_of_connection = StringVar()  # Variable to store the number of connections
 
 
         ###~~~CUSTOMER Functions~~~###
         def iExit():
+            # Function to handle the exit button
             iExit = tkinter.messagebox.askyesno("Exit", "Confirm if you want to exit")
             if iExit>0:
                 root.destroy()
                 return
 
         def iReset():
-            self.txtid.delete(0, END)
-            self.txtName.delete(0, END)
-            self.txtAddress.delete(0, END)
-            self.cbosector_no.current(0)
-            self.txtofficer_id.delete(0, END)
-            self.txtreservoir_id.delete(0, END)
-            self.txtno_of_connection.delete(0, END)
+            # Function to handle the reset button
+            self.txtid.delete(0, END)  # Clear the customer ID entry field
+            self.txtName.delete(0, END)  # Clear the customer name entry field
+            self.txtAddress.delete(0, END)  # Clear the customer address entry field
+            self.cbosector_no.current(0)  # Reset the sector number dropdown to the default option
+            self.txtofficer_id.delete(0, END)  # Clear the officer ID entry field
+            self.txtreservoir_id.delete(0, END)  # Clear the reservoir ID entry field
+            self.txtno_of_connection.delete(0, END)  # Clear the number of connections entry field
         
         def addData():
+            # Function to add data to the customer database
             if id.get() == "" or Name.get() == "" or Address.get() == "" or sector_no.get() == "" or officer_id.get() == "" or reservoir_id.get() == "" or no_of_connection.get() == "":
                 tkinter.messagebox.askyesno("Error", "Please enter the correct Data")
             else:
@@ -261,6 +265,7 @@ class Customer:
     
 
         def displayData():
+            # Function to display data from the customer database
             result = backend.viewCustomer()
             if len(result)!=0:
                 self.customerlist.delete(*self.customerlist.get_children())
@@ -268,6 +273,7 @@ class Customer:
                     self.customerlist.insert('', END, values = row)
 
         def deleteData():
+            # Function to delete data from the customer database
             if(len(id.get())!= 0):
                 backend.delCustomer(sd[0])
                 iReset()
@@ -275,6 +281,7 @@ class Customer:
                 tkinter.messagebox.showinfo("Delete", "Record successfully deleted")
 
         def update():
+            # Function to update data in the customer database
             if(len(id.get()) != 0):
                 backend.delCustomer(sd[0])
 
@@ -284,6 +291,7 @@ class Customer:
             displayData()
 
         def customerREC(event):
+            # Function to handle selection of a customer record
             global sd
             iReset()
             viewInfo = self.customerlist.focus()
@@ -301,31 +309,40 @@ class Customer:
 
 
         ###~~~CUSTOMER Frames~~~####
+        # Creating the main frame for the customer interface
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
 
+        # Frame for the buttons
         ButtonFrame = Frame(MainFrame, bd = 5, width = 1340, height = 100, relief = RIDGE)
         ButtonFrame.grid(row = 2, column = 0, pady = 8)
 
+        # Frame for the title
         TitleFrame = Frame(MainFrame, bd = 7, width = 1340, height = 100, relief = RIDGE)
         TitleFrame.grid(row = 0, column = 0)
 
+        # Frame for the top section
         TopFrame = Frame(MainFrame, bd = 5, width = 1340, height = 500, relief = RIDGE)
         TopFrame.grid(row = 1, column = 0)
 
+        # Left frame within the top section
         LeftFrame = Frame(TopFrame, bd = 5, width = 1340, height = 400, padx = 2, bg = "cadet blue", relief = RIDGE)
         LeftFrame.pack(side = LEFT)
 
+        # Frame for the widgets within the left frame
         WidgetFrame = Frame(LeftFrame, bd = 5, width = 300, height = 180, padx = 2, pady = 4, relief = RIDGE)
         WidgetFrame.pack(side = TOP, padx = 0, pady = 4)
 
+        # Right frame within the top section
         RightFrame = Frame(TopFrame, bd = 5, width = 320, height = 400, padx = 2, bg = "cadet blue", relief = RIDGE)
         RightFrame.pack(side = RIGHT)
 
+        # Frame for the treeview within the right frame
         TreeViewFrame = Frame(RightFrame, bd = 5, width = 310, height = 200, padx = 2, pady = 2, relief = RIDGE)
         TreeViewFrame.pack(side = TOP)
 
-        ###~~~CUSTOMER Title~~~###    
+        ###~~~CUSTOMER Title~~~###   
+        # Label for the title 
         self.lblTitle = Label(TitleFrame, font = ('arial', 56, 'bold'), text='Customer Database', bd = 7)
         self.lblTitle.grid(row = 0, column = 0, padx =132)
 

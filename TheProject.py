@@ -350,32 +350,47 @@ class Customer:
 
 
         ###~~~CUSTOMER Buttons~~~###
+
+        # Button for adding new data
         self.btnAddNew = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Insert New" ,padx = 24, width = 8, height  = 1, command = addData).grid(row = 0, column = 0, padx = 1)
+        
+        # Button for displaying data
         self.btnDisplay = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Display" ,padx = 24, width = 8, height  = 1, command = displayData).grid(row = 0, column = 1, padx = 1)
+        
+        # Button for deleting data
         self.btnDelete = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Delete" ,padx = 24, width = 8, height  = 1, command = deleteData).grid(row = 0, column = 2, padx = 1)
+        
+        # Button for updating data
         self.btnUpdate = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Update" ,padx = 24, width = 8, height  = 1, command = update).grid(row = 0, column = 3, padx = 1)
+        
+        # Button for resetting data
         self.btnReset = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Reset" ,padx = 24, width = 8, height  = 1, command = iReset).grid(row = 0, column = 4, padx = 1)
+        
+        # Button for exiting the application
         self.btnExit = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Exit" ,padx = 24, width = 8, height  = 1, command = iExit).grid(row = 0, column = 5, padx = 1)
 
 
         ###~~~CUSTOMER Widgets~~~###
 
-
+        # Creating label and grid for Customer ID
         self.lblid = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Customer ID ', bd = 7, anchor='w', justify=LEFT)
         self.lblid.grid(row=0,column=0,sticky =W,padx=5)
         self.txtid = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = id)
         self.txtid.grid(row=0, column=1)
 
+        # Creating label and grid for Customer Name
         self.lblName = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Customer Name ', bd = 7, anchor='w', justify=LEFT)
         self.lblName.grid(row=1,column=0,sticky =W,padx=5)
         self.txtName = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = Name)
         self.txtName.grid(row=1, column=1)
 
+        # Creating label and grid for Customer Address
         self.lblAddress = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Address ', bd = 7, anchor='w', justify=LEFT)
         self.lblAddress.grid(row=2,column=0,sticky =W,padx=5)
         self.txtAddress = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = Address)
         self.txtAddress.grid(row=2, column=1)
 
+        # Creating label and grid for Sector Number
         self.lblsector_no = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Sector No ', bd = 7, anchor='w', justify=LEFT)
         self.lblsector_no.grid(row=3,column=0,sticky =W,padx=5)
         self.cbosector_no = ttk.Combobox(WidgetFrame, width = 39, font = ('arial', 12, 'bold'), state = 'readonly', textvariable = sector_no)
@@ -383,30 +398,37 @@ class Customer:
         self.cbosector_no.current(0)
         self.cbosector_no.grid(row = 3, column = 1)
 
+        # Creating label and grid for Officer ID
         self.lblofficer_id = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Officer ID', bd = 7, anchor='w', justify=LEFT)
         self.lblofficer_id.grid(row=4,column=0,sticky =W,padx=5)
         self.txtofficer_id = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = officer_id)
         self.txtofficer_id.grid(row=4, column=1)
 
+        # Creating label and grid for Reservoir ID        
         self.lblreservoir_id = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Reservoir ID', bd = 7, anchor='w', justify=LEFT)
         self.lblreservoir_id.grid(row=5,column=0,sticky =W,padx=5)
         self.txtreservoir_id = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = reservoir_id)
         self.txtreservoir_id.grid(row=5, column=1)
 
+        # Creating label and grid for Number of Connections        
         self.lblno_of_connection = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'No. of connections', bd = 7, anchor='w', justify=LEFT)
         self.lblno_of_connection.grid(row=6,column=0,sticky =W,padx=5)
         self.txtno_of_connection = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = no_of_connection)
         self.txtno_of_connection.grid(row=6, column=1)
 
         ###~~~CUSTOMER Treeview~~~###
+        # Creating horizontal and vertical scrollbars for the treeview
         scroll_x = Scrollbar(TreeViewFrame, orient = HORIZONTAL)
         scroll_y = Scrollbar(TreeViewFrame, orient = VERTICAL)
 
+        # Creating the customerlist treeview with specified height, columns, and scrollbars
         self.customerlist = ttk.Treeview(TreeViewFrame, height = 12, columns = ("id", "Name", "Address", "sector_no", "officer_id", "reservoir_id", "no_of_connection"), xscrollcommand = scroll_x.set,yscrollcommand = scroll_y.set)
 
+        # Attaching the scrollbars to the treeview
         scroll_x.pack(side = BOTTOM, fill = X)
         scroll_y.pack(side = BOTTOM, fill = Y)
 
+        # Configuring the column headings of the treeview
         self.customerlist.heading("id", text = "Customer ID")
         self.customerlist.heading("Name", text = "Customer Name")
         self.customerlist.heading("Address", text = "Customer Address")
@@ -415,7 +437,10 @@ class Customer:
         self.customerlist.heading("reservoir_id", text = "Reservoir ID")
         self.customerlist.heading("no_of_connection", text = "No. of conns.")
 
+        # Displaying only the column headings in the treeview
         self.customerlist['show'] = 'headings'
+
+        # Configuring the width of each column in the treeview
         self.customerlist.column("id", width = 90)
         self.customerlist.column("Name", width =  130)
         self.customerlist.column("Address", width = 130)
@@ -424,9 +449,13 @@ class Customer:
         self.customerlist.column("reservoir_id", width = 90)
         self.customerlist.column("no_of_connection", width = 90)
 
+        # Packing the treeview to fill the available space and expand
         self.customerlist.pack(fill = BOTH, expand = 1)
 
+        # Binding the customerREC function to the "<ButtonRelease-1>" event of the treeview
         self.customerlist.bind("<ButtonRelease-1>", customerREC)
+
+        # Calling the displayData function to populate the treeview with data
         displayData()
 
 
@@ -436,10 +465,12 @@ class Officer:
     
     ###~~~OFFICER DB~~~###
     def  __init__(self, root):
+        # Initialize the Officer class with the given root (main window) object
+
         self.root = root
         blank_space = " "
-        self.root.title(200 * blank_space + "Officer DB")
-        self.root.geometry("1920x1080+0+0")
+        self.root.title(200 * blank_space + "Officer DB")  # Set the title of the main window
+        self.root.geometry("1920x1080+0+0")  # Set the size and position of the main window
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
 
@@ -449,17 +480,20 @@ class Officer:
         
         ###~~~OFFICER Functions~~~###
         def iExit():
+            # Function to handle the exit action when the user confirms to exit
             iExit = tkinter.messagebox.askyesno("Exit", "Confirm if you want to exit")
             if iExit>0:
                 root.destroy()
                 return
 
         def iReset():
+            # Function to reset the input fields
             self.txtid.delete(0, END)
             self.txtName.delete(0, END)
             self.cbosector_no.current(0)
 
         def addData():
+            # Function to reset the input fields
             if id.get() == "" or Name.get() == "" or sector_no.get() == "":
                 tkinter.messagebox.askyesno("Error", "Please enter the correct Data")
             else:
@@ -481,6 +515,7 @@ class Officer:
                     ))
 
         def displayData():
+            # Function to display data in the officerlist
             result = backend.viewOfficer()
             if len(result)!=0:
                 self.officerlist.delete(*self.officerlist.get_children())
@@ -488,13 +523,15 @@ class Officer:
                     self.officerlist.insert('', END, values = row)
 
         def deleteData():
+            # Function to delete selected data from the backend and update the display
             if(len(id.get())!= 0):
                 backend.delOfficer(sd[0])
                 iReset()
                 displayData()
                 tkinter.messagebox.showinfo("Delete", "Record successfully deleted")
 
-        def update():
+        def update():            
+            # Function to update data in the backend and update the display
             if(len(id.get()) != 0):
                 backend.delOfficer(sd[0])
 
@@ -505,17 +542,19 @@ class Officer:
 
 
         def officerREC(event):
+        # Function to handle the selection of an officer record in the officerlist
             global sd
-            iReset()
-            viewInfo = self.officerlist.focus()
-            learnerData = self.officerlist.item(viewInfo)
-            sd = learnerData['values']
+            iReset()  # Reset the input fields
+            viewInfo = self.officerlist.focus() # Get the focused item in the officerlist
+            learnerData = self.officerlist.item(viewInfo) # Retrieve the data of the selected item
+            sd = learnerData['values'] # Extract the values of the selected item and store them in sd
 
-            self.txtid.insert(END,sd[0])
-            self.txtName.insert(END,sd[1])
-            sector_no.set(sd[2])
+            self.txtid.insert(END,sd[0]) # Insert the Officer ID value into the txtid Entry field
+            self.txtName.insert(END,sd[1]) # Insert the Officer Name value into the txtName Entry field
+            sector_no.set(sd[2]) # Set the value of the sector_no Combobox to the Sector No. value
 
         ###~~~OFFICER Frames~~~###
+        # Create and configure various frames within the main window
 
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
@@ -542,10 +581,12 @@ class Officer:
         TreeViewFrame.pack(side = TOP)
 
         ###~~~OFFICER Title~~~###
+        # Create and configure the title label for the Officer DB
         self.lblTitle = Label(TitleFrame, font = ('arial', 56, 'bold'), text='Officer DB', bd = 7)
         self.lblTitle.grid(row = 0, column = 0, padx =132)
 
         ###~~~OFFICER Widgets~~~###
+        # Create and configure labels, entry fields, and combobox for Officer ID, Officer Name, and Sector No.
 
         self.lblid = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Officer ID ', bd = 7, anchor='w', justify=LEFT)
         self.lblid.grid(row=0,column=0,sticky =W,padx=5)
@@ -565,14 +606,18 @@ class Officer:
         self.cbosector_no.grid(row = 2, column = 1)
 
         ###~~~OFFICER Treeview~~~###
+        # Create horizontal and vertical scrollbars for the treeview
         scroll_x = Scrollbar(TreeViewFrame, orient = HORIZONTAL)
         scroll_y = Scrollbar(TreeViewFrame, orient = VERTICAL)
 
+        # Create the treeview widget with specified columns and scrollbars
         self.officerlist = ttk.Treeview(TreeViewFrame, height = 12, columns = ("id", "Name", "sector_no"), xscrollcommand = scroll_x.set,yscrollcommand = scroll_y.set)
 
+        # Set the column headings for the treeview
         scroll_x.pack(side = BOTTOM, fill = X)
         scroll_y.pack(side = BOTTOM, fill = Y)
 
+        # Set the width of each column in the treeview
         self.officerlist.heading("id", text = "Officer ID")
         self.officerlist.heading("Name", text = "Officer Name")
         self.officerlist.heading("sector_no", text = "Sector No")
@@ -584,16 +629,30 @@ class Officer:
 
         self.officerlist.pack(fill = BOTH, expand = 1)
 
+        # Bind the click event to the officerREC function
         self.officerlist.bind("<ButtonRelease-1>", officerREC)
+        # Display the data in the treeview
         displayData()
         
         
         ###~~~OFFICER Buttons~~~###
+
+        # Create and configure the insert new button
         self.btnAddNew = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Insert New" ,padx = 24, width = 8, height  = 1, command = addData).grid(row = 0, column = 0, padx = 1)
+        
+        # Create and configure the display button
         self.btnDisplay = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Display" ,padx = 24, width = 8, height  = 1, command = displayData).grid(row = 0, column = 1, padx = 1)
+        
+        # Create and configure the delete button
         self.btnDelete = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Delete" ,padx = 24, width = 8, height  = 1, command = deleteData).grid(row = 0, column = 2, padx = 1)
+        
+        # Create and configure the update button
         self.btnUpdate = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Update" ,padx = 24, width = 8, height  = 1, command = update).grid(row = 0, column = 3, padx = 1)
+        
+        # Create and configure the reset button
         self.btnReset = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Reset" ,padx = 24, width = 8, height  = 1, command = iReset).grid(row = 0, column = 4, padx = 1)
+        
+        # Create and configure the exit button
         self.btnExit = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Exit" ,padx = 24, width = 8, height  = 1, command = iExit).grid(row = 0, column = 5, padx = 1)
 
 

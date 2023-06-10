@@ -663,6 +663,7 @@ class Bills:
 
     ###~~~BILLS DB~~~###
     def __init__(self, root):
+        # Initialize the Bills class with the root window
         self.root = root
         blank_space = " "
         self.root.title(200 * blank_space + "Billing DB")
@@ -670,24 +671,29 @@ class Bills:
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
 
+        # Define StringVars for storing user inputs
         customer_id = StringVar()
         id = StringVar()
         Payments_Due = StringVar()
         due_Date = StringVar()
         
         ###~~~BILLS Functions~~~###
+
+        # Function to exit the program
         def iExit():
             iExit = tkinter.messagebox.askyesno("Exit", "Confirm if you want to exit")
             if iExit>0:
                 root.destroy()
                 return
 
+        # Function to reset the input fields
         def iReset():
             self.txtid.delete(0, END)
             self.txtcustomer_id.delete(0, END)
             self.txtPayments_Due.delete(0, END)
             self.txtdue_Date.delete(0, END)
 
+        # Function to add data to the database
         def addData():
             if id.get() == "" or customer_id.get() == "" or Payments_Due.get() == "" or due_Date.get == "":
                 tkinter.messagebox.askyesno("Error","Please enter the correct Data")
@@ -711,6 +717,7 @@ class Bills:
                     due_Date.get(),
                 ))
 
+        # Function to display data from the database
         def displayData():
             result = backend.viewBill()
             if len(result)!=0:
@@ -718,6 +725,7 @@ class Bills:
                 for row in result:
                     self.billinglist.insert('', END, values = row)
 
+        # Function to delete data from the database
         def deleteData():
             if(len(id.get())!= 0):
                 backend.delBill(sd[0])
@@ -725,6 +733,7 @@ class Bills:
                 displayData()
                 tkinter.messagebox.showinfo("Delete", "Record successfully deleted")
 
+        # Function to update data in the database
         def update():
             if(len(id.get()) != 0):
                 backend.delBill(sd[0])
@@ -735,19 +744,23 @@ class Bills:
             displayData()
             
 
+        # Function to handle the selection of a record in the billinglist
         def billingREC(event):
             global sd
-            iReset()
-            viewInfo = self.billinglist.focus()
-            learnerData = self.billinglist.item(viewInfo)
-            sd = learnerData['values']
+            iReset() # Reset the input fields
+            viewInfo = self.billinglist.focus() # Get the focused item in the billinglist
+            learnerData = self.billinglist.item(viewInfo) # Get the data of the focused item
+            sd = learnerData['values'] # Extract the values of the focused item
 
+            # Insert the values into the respective input fields
             self.txtid.insert(END,sd[0])
             self.txtcustomer_id.insert(END,sd[1])
             self.txtPayments_Due.insert(END,sd[2])
             self.txtdue_Date.insert(END,sd[3])
 
         ###~~~BILLS Frames~~~###
+        # Create and configure various frames within the main window
+
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
 
@@ -773,10 +786,14 @@ class Bills:
         TreeViewFrame.pack(side = TOP)
 
         ###~~~BILLS Title~~~###
+        # Create and configure the title label for the billing window
+
         self.lblTitle = Label(TitleFrame, font = ('arial', 56, 'bold'), text='Billing DB', bd = 7)
         self.lblTitle.grid(row = 0, column = 0, padx =132)
 
         ###~~~BILLS Buttons~~~###
+        # Create and configure the buttons for various operations in the billing window
+
         self.btnAddNew = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Insert New" ,padx = 24, width = 8, height  = 1, command = addData).grid(row = 0, column = 0, padx = 1)
         self.btnDisplay = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Display" ,padx = 24, width = 8, height  = 1, command = displayData).grid(row = 0, column = 1, padx = 1)
         self.btnDelete = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Delete" ,padx = 24, width = 8, height  = 1, command = deleteData).grid(row = 0, column = 2, padx = 1)
@@ -785,6 +802,8 @@ class Bills:
         self.btnExit = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Exit" ,padx = 24, width = 8, height  = 1, command = iExit).grid(row = 0, column = 5, padx = 1)
 
         ###~~~BILLS Labels~~~###
+        # Create and configure labels for the input fields
+
         self.lblid = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Bill ID ', bd = 7, anchor='w', justify=LEFT)
         self.lblid.grid(row=0,column=0,sticky =W,padx=5)
         self.txtid = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = id)
@@ -806,6 +825,8 @@ class Bills:
         self.txtdue_Date.grid(row=3, column=1)
 
         ###~~~BILLS TreeView~~~###
+        # Create and configure a Treeview widget to display the billing records
+
         scroll_x = Scrollbar(TreeViewFrame, orient = HORIZONTAL)
         scroll_y = Scrollbar(TreeViewFrame, orient = VERTICAL)
 

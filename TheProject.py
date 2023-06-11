@@ -856,14 +856,18 @@ class Bills:
 class Locality:
     
     ###~~~LOCALITY DB~~~###
+    # Define the constructor for the class, which takes a "root" argument
     def __init__(self, root):
+        # Set the "root" attribute of the class to the "root" argument
         self.root = root
+        # Set the title and geometry of the root window
         blank_space = " "
         self.root.title(200 * blank_space + "Locality DB")
         self.root.geometry("1920x1080+0+0")
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
-
+        
+        # Define StringVars for storing user inputs in Locality window
         sector_no = StringVar()
         Area_Name = StringVar()
         Water_Supply_Date = StringVar()
@@ -871,12 +875,15 @@ class Locality:
         reservoir_id = StringVar()
         
         ###~~~LOCALITY Functions~~~###
+
+        # Function to handle the exit button click event
         def iExit():
             iExit = tkinter.messagebox.askyesno("Exit", "Confirm if you want to exit")
             if iExit>0:
                 root.destroy()
                 return
 
+        # Function to reset the input fields
         def iReset():
             self.cbosector_no.current(0)
             self.txtWater_Supply_Date.delete(0, END)
@@ -884,6 +891,7 @@ class Locality:
             self.txtArea_Name.delete(0, END)
             self.txtreservoir_id.delete(0, END)
 
+        # Function to add data to the backend and update the display
         def addData():
             if sector_no.get() == "" or Area_Name.get() == "" or Water_Supply_Date.get() == "" or officer_id.get() == "" or reservoir_id.get() == "":
                 tkinter.messagebox.askyesno("Error", "Please enter the correct Data")
@@ -910,6 +918,7 @@ class Locality:
                 ))
 
 
+        # Function to display data in the locality list
         def displayData():
             result = backend.viewLocality()
             if len(result)!=0:
@@ -917,6 +926,7 @@ class Locality:
                 for row in result:
                     self.localitylist.insert('', END, values = row)
 
+        # Function to delete data from the backend and update the display
         def deleteData():
             if(len(sector_no.get())!= 0):
                 backend.delLocality(sd[0])
@@ -924,6 +934,7 @@ class Locality:
                 displayData()
                 tkinter.messagebox.showinfo("Delete", "Record successfully deleted")
 
+        # Function to update data in the backend and update the display
         def update():
             if(len(sector_no.get()) != 0):
                 backend.delLocality(sd[0])
@@ -934,6 +945,7 @@ class Locality:
             displayData()
 
         def localityREC(event):
+            # Function to handle the locality table's selection event
             global sd
             iReset()
             viewInfo = self.localitylist.focus()
@@ -950,31 +962,40 @@ class Locality:
 
         ###~~~LOCALITY Frames~~~###
 
+        # Create the main frame with specified dimensions, border, relief, and background color
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
 
+        # Create a sub-frame for buttons with specified dimensions, border, and relief, and place it in the main frame
         ButtonFrame = Frame(MainFrame, bd = 5, width = 1340, height = 100, relief = RIDGE)
         ButtonFrame.grid(row = 2, column = 0, pady = 8)
 
+        # Create a sub-frame for the title with specified dimensions, border, and relief, and place it in the main frame
         TitleFrame = Frame(MainFrame, bd = 7, width = 1340, height = 100, relief = RIDGE)
         TitleFrame.grid(row = 0, column = 0)
 
+        # Create a sub-frame for the content at the top with specified dimensions, border, and relief, and place it in the main frame
         TopFrame = Frame(MainFrame, bd = 5, width = 1340, height = 500, relief = RIDGE)
         TopFrame.grid(row = 1, column = 0)
 
+        # Create a sub-frame for the content at the left side of the top frame with specified dimensions, border, background color, and relief, and place it to the left
         LeftFrame = Frame(TopFrame, bd = 5, width = 1340, height = 400, padx = 2, bg = "cadet blue", relief = RIDGE)
         LeftFrame.pack(side = LEFT)
 
+        # Create a sub-frame for widgets inside the left frame with specified dimensions, border, padding, and relief, and place it at the top
         WidgetFrame = Frame(LeftFrame, bd = 5, width = 300, height = 180, padx = 2, pady = 4, relief = RIDGE)
         WidgetFrame.pack(side = TOP, padx = 0, pady = 4)
 
+        # Create a sub-frame for the content at the right side of the top frame with specified dimensions, border, background color, and relief, and place it to the right
         RightFrame = Frame(TopFrame, bd = 5, width = 320, height = 400, padx = 2, bg = "cadet blue", relief = RIDGE)
         RightFrame.pack(side = RIGHT)
 
+        # Create a sub-frame for the tree view inside the right frame with specified dimensions, border, padding, and relief, and place it at the top
         TreeViewFrame = Frame(RightFrame, bd = 5, width = 310, height = 200, padx = 2, pady = 2, relief = RIDGE)
         TreeViewFrame.pack(side = TOP)
 
         ###~~~LOCALITY Class~~~###
+        # Create a label for the title text inside the title frame with specified font, text, border, and position
         self.lblTitle = Label(TitleFrame, font = ('arial', 56, 'bold'), text='Locality DB', bd = 7)
         self.lblTitle.grid(row = 0, column = 0, padx =132)
 
@@ -982,70 +1003,109 @@ class Locality:
 
 
         ###~~~LOCALITY Button~~~###
+
+        # Create a button for adding new data with specified properties and command, and place it in the button frame
         self.btnAddNew = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Insert New" ,padx = 24, width = 8, height  = 1, command = addData).grid(row = 0, column = 0, padx = 1)
+        
+        # Create a button for displaying data with specified properties and command, and place it in the button frame
         self.btnDisplay = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Display" ,padx = 24, width = 8, height  = 1, command = displayData).grid(row = 0, column = 1, padx = 1)
+        
+        # Create a button for deleting data with specified properties and command, and place it in the button frame
         self.btnDelete = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Delete" ,padx = 24, width = 8, height  = 1, command = deleteData).grid(row = 0, column = 2, padx = 1)
+        
+        # Create a button for updating data with specified properties and command, and place it in the button frame
         self.btnUpdate = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Update" ,padx = 24, width = 8, height  = 1, command = update).grid(row = 0, column = 3, padx = 1)
+        
+        # Create a button for resetting data with specified properties and command, and place it in the button frame
         self.btnReset = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Reset" ,padx = 24, width = 8, height  = 1, command = iReset).grid(row = 0, column = 4, padx = 1)
+        
+        # Create a button for exiting the program with specified properties and command, and place it in the button frame
         self.btnExit = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Exit" ,padx = 24, width = 8, height  = 1, command = iExit).grid(row = 0, column = 5, padx = 1)
 
 
 
         ###~~~LOCALITY Buttons~~~###
+
+        # Create a label for the "Sector No." text with specified properties, and place it in the widget frame
         self.lblsector_no = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Sector No. ', bd = 7, anchor='w', justify=LEFT)
         self.lblsector_no.grid(row=0,column=0,sticky =W,padx=5)
+        
+        # Create a combobox for selecting the sector number with specified properties, and place it in the widget frame
         self.cbosector_no = ttk.Combobox(WidgetFrame, width = 39, font = ('arial', 12, 'bold'), state = 'readonly', textvariable = sector_no)
         self.cbosector_no['values'] = ('','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13')
         self.cbosector_no.current(0)
         self.cbosector_no.grid(row = 0, column = 1)
 
 
+        # Create a label for the "Area Name" text with specified properties, and place it in the widget frame
         self.lblArea_Name = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Area Name ', bd = 7, anchor='w', justify=LEFT)
         self.lblArea_Name.grid(row=1,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for entering the area name with specified properties, and place it in the widget frame
         self.txtArea_Name = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = Area_Name)
         self.txtArea_Name.grid(row=1, column=1)
 
+        # Create a label for the "Water Supply Date" text with specified properties, and place it in the widget frame
         self.lblWater_Supply_Date = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Water Supply Date ', bd = 7, anchor='w', justify=LEFT)
         self.lblWater_Supply_Date.grid(row=2,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for entering the water supply date with specified properties, and place it in the widget frame
         self.txtWater_Supply_Date = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = Water_Supply_Date)
         self.txtWater_Supply_Date.grid(row=2, column=1)
 
+        # Create a label for the "Officer ID" text with specified properties, and place it in the widget frame
         self.lblofficer_id = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Officer ID ', bd = 7, anchor='w', justify=LEFT)
         self.lblofficer_id.grid(row=3,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for entering the officer ID with specified properties, and place it in the widget frame
         self.txtofficer_id = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = officer_id)
         self.txtofficer_id.grid(row=3, column=1)
 
 
+        # Create a label for the "Reservoir ID" text with specified properties, and place it in the widget frame
         self.lblreservoir_id = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Reservoir ID', bd = 7, anchor='w', justify=LEFT)
         self.lblreservoir_id.grid(row=4,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for entering the reservoir ID with specified properties, and place it in the widget frame
         self.txtreservoir_id = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = reservoir_id)
         self.txtreservoir_id.grid(row=4, column=1)
 
         ###~~~LOCALITY TreeView~~~###
+
+        # Create horizontal and vertical scrollbars for the locality treeview
         scroll_x = Scrollbar(TreeViewFrame, orient = HORIZONTAL)
         scroll_y = Scrollbar(TreeViewFrame, orient = VERTICAL)
 
+        # Create a treeview for displaying locality data with specified properties and scrollbars, and place it in the treeview frame
         self.localitylist = ttk.Treeview(TreeViewFrame, height = 12, columns = ("sector_no", "Area_Name", "Water_Supply_Date", "officer_id", "reservoir_id"), xscrollcommand = scroll_x.set,yscrollcommand = scroll_y.set)
 
         scroll_x.pack(side = BOTTOM, fill = X)
         scroll_y.pack(side = BOTTOM, fill = Y)
 
+        # Set the headings for the columns in the locality treeview
         self.localitylist.heading("sector_no", text = "Sector No.")
         self.localitylist.heading("Area_Name", text = "Area Name")
         self.localitylist.heading("Water_Supply_Date", text = "Water Supply Date")
         self.localitylist.heading("officer_id", text = "Officer ID")
         self.localitylist.heading("reservoir_id", text = "Reservoir ID")
 
+        # Display only the headings in the locality treeview
         self.localitylist['show'] = 'headings'
+
+        # Set the width for each column in the locality treeview
         self.localitylist.column("sector_no", width = 90)
         self.localitylist.column("Area_Name", width =  150)
         self.localitylist.column("Water_Supply_Date", width = 150)
         self.localitylist.column("officer_id", width = 90)
         self.localitylist.column("reservoir_id", width = 90)
 
+        # Pack and expand the locality treeview to fill the available space
         self.localitylist.pack(fill = BOTH, expand = 1)
 
+        # Bind the "<ButtonRelease-1>" event to the localityREC function
         self.localitylist.bind("<ButtonRelease-1>", localityREC)
+
+        # Call the displayData function to populate the locality treeview with data
         displayData()
 
 

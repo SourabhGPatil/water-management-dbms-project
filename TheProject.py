@@ -1113,43 +1113,55 @@ class Locality:
 class Reservoir:
     ###~~~RESERVOIR DB~~~###
     def  __init__(self, root):
+        # Initialize the Reservoir class with the root window
         self.root = root
         blank_space = " "
+
+        # Set the title and geometry of the root window
         self.root.title(200 * blank_space + "Reservoir DB")
         self.root.geometry("1920x1080+0+0")
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
 
+        # Create StringVar variables for storing the Reservoir ID, Name, and Water Level
         id = StringVar()
         Name = StringVar()
         Water_level = StringVar()
         
         ###~~~RESERVOIR Functions~~~###
         def iExit():
+            # Function to exit the application
             iExit = tkinter.messagebox.askyesno("Exit", "Confirm if you want to exit")
             if iExit>0:
                 root.destroy()
                 return
 
         def iReset():
+            # Function to reset the input fields
             self.txtid.delete(0, END)
             self.txtName.delete(0, END)
             self.txtWater_level.delete(0, END)
 
         def addData():
+            # Function to add data to the reservoir database
             if id.get() == "" or Name.get() == "" or Water_level.get() == "":
+                # Check if all input fields are filled
                 tkinter.messagebox.askyesno("Error", "Please enter the correct Data")
             else:
+                # Call the backend function to add reservoir data
                 backend.addReservoir(
                     id.get(),
                     Name.get(),
                     Water_level.get()
                 )
 
+                # Call the displayData function to update the data display
                 displayData()
 
+                # Delete the contents of the reservoir list treeview
                 super(self.reservoirlist, self).delete()
 
+                # Insert the new data into the reservoir list
                 self.reservoirlist.insert(END,
                     (
                     id.get(),
@@ -1158,72 +1170,97 @@ class Reservoir:
                     ))
 
         def displayData():
+            # Function to display data from the reservoir database
             result = backend.viewReservoir()
+            # Check if there is any data in the result
             if len(result)!=0:
+                # Clear the existing data in the reservoir list treeview
                 self.reservoirlist.delete(*self.reservoirlist.get_children())
+                # Iterate over each row in the result and insert it into the reservoirlist
                 for row in result:
                     self.reservoirlist.insert('', END, values = row)
 
         def deleteData():
+            # Function to delete data from the reservoir database
+
+            # Check if the id field is not empty
             if(len(id.get())!= 0):
-                backend.delReservoir(sd[0])
-                iReset()
-                displayData()
-                tkinter.messagebox.showinfo("Delete","Record successfully deleted")
+                backend.delReservoir(sd[0]) # Delete the record corresponding to the id value from the backend
+                iReset()   # Reset the input fields
+                displayData() # Update the data display
+                tkinter.messagebox.showinfo("Delete","Record successfully deleted")  # Show a messagebox to indicate that the record was deleted successfully
+
 
         def update():
+            # Function to update data in the reservoir database
+
+            # Check if the id field is not empty
             if(len(id.get()) != 0):
-                backend.delReservoir(sd[0])
+                backend.delReservoir(sd[0])  # Delete the existing record with the same id from the backend
 
             if(len(id.get()) != 0):
-                backend.addReservoir(id.get(), Name.get(), Water_level.get())
+                backend.addReservoir(id.get(), Name.get(), Water_level.get()) # Add the updated data to the reservoir database
 
-            displayData()
+            displayData() # Update the data display
         
 
         def ReservoirREC(event):
-            global sd
-            iReset()
-            viewInfo = self.reservoirlist.focus()
-            learnerData = self.reservoirlist.item(viewInfo)
-            sd = learnerData['values']
+            # Function to handle events related to the reservoir list treeview
 
+            global sd
+            iReset() # Reset the input fields
+            viewInfo = self.reservoirlist.focus() # Get the focused item in the reservoir list treeview
+            learnerData = self.reservoirlist.item(viewInfo)  # Get the data associated with the focused item
+            sd = learnerData['values'] # Extract the values from the data dictionary and assign them to sd
+
+            # Insert the values from sd into the corresponding input fields
             self.txtid.insert(END,sd[0])
             self.txtName.insert(END,sd[1])
             self.txtWater_level.insert(END,sd[2])
 
         ###~~~RESERVOIR Frames~~~###
 
+        # Creating the main frame for the application
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
 
+        # Creating a frame for buttons
         ButtonFrame = Frame(MainFrame, bd = 5, width = 1340, height = 100, relief = RIDGE)
         ButtonFrame.grid(row = 2, column = 0, pady = 8)
 
+        # Creating a frame for the title
         TitleFrame = Frame(MainFrame, bd = 7, width = 1340, height = 100, relief = RIDGE)
         TitleFrame.grid(row = 0, column = 0)
 
+        # Creating a frame for the top section
         TopFrame = Frame(MainFrame, bd = 5, width = 1340, height = 500, relief = RIDGE)
         TopFrame.grid(row = 1, column = 0)
 
+        # Creating a frame for the left section
         LeftFrame = Frame(TopFrame, bd = 5, width = 1340, height = 400, padx = 2, bg = "cadet blue", relief = RIDGE)
         LeftFrame.pack(side = LEFT)
 
+        # Creating a frame for widgets
         WidgetFrame = Frame(LeftFrame, bd = 5, width = 300, height = 180, padx = 2, pady = 4, relief = RIDGE)
         WidgetFrame.pack(side = TOP, padx = 0, pady = 4)
 
+        # Creating a frame for the right section
         RightFrame = Frame(TopFrame, bd = 5, width = 320, height = 400, padx = 2, bg = "cadet blue", relief = RIDGE)
         RightFrame.pack(side = RIGHT)
 
+        # Creating a frame for the tree view
         TreeViewFrame = Frame(RightFrame, bd = 5, width = 310, height = 200, padx = 2, pady = 2, relief = RIDGE)
         TreeViewFrame.pack(side = TOP)
 
         ###~~~RESERVOIR Title~~~###
+
+        # Creating a label for the title
         self.lblTitle = Label(TitleFrame, font = ('arial', 56, 'bold'), text='Reservoir DB', bd = 7)
         self.lblTitle.grid(row = 0, column = 0, padx =132)
 
         ###~~~RESERVOIR Labels~~~###
 
+        # Creating labels for reservoir information
         self.lblid = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Reservoir ID ', bd = 7, anchor='w', justify=LEFT)
         self.lblid.grid(row=0,column=0,sticky =W,padx=5)
         self.txtid = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = id)
@@ -1240,29 +1277,36 @@ class Reservoir:
         self.txtWater_level.grid(row=2, column=1)
 
         ###~~~RESERVOIR TreeView~~~###
+
+        # Creating horizontal and vertical scrollbars for the treeview
         scroll_x = Scrollbar(TreeViewFrame, orient = HORIZONTAL)
         scroll_y = Scrollbar(TreeViewFrame, orient = VERTICAL)
 
+        # Creating the treeview widget with specified columns and scroll commands
         self.reservoirlist = ttk.Treeview(TreeViewFrame, height = 12, columns = ("id", "Name", "Water_level"), xscrollcommand = scroll_x.set,yscrollcommand = scroll_y.set)
 
-        scroll_x.pack(side = BOTTOM, fill = X)
-        scroll_y.pack(side = BOTTOM, fill = Y)
+        scroll_x.pack(side=BOTTOM, fill=X)  # Displaying the horizontal scrollbar at the bottom
+        scroll_y.pack(side=BOTTOM, fill=Y)  # Displaying the vertical scrollbar at the bottom
 
+        # Configuring column headings for the treeview
         self.reservoirlist.heading("id", text = "Reservoir ID")
         self.reservoirlist.heading("Name", text = "Reservoir Name")
         self.reservoirlist.heading("Water_level", text = "Water level")
 
-        self.reservoirlist['show'] = 'headings'
-        self.reservoirlist.column("id", width = 90)
-        self.reservoirlist.column("Name", width =  150)
-        self.reservoirlist.column("Water_level", width = 90)
+        self.reservoirlist['show'] = 'headings'  # Showing only the column headings
+        self.reservoirlist.column("id", width=90)  # Setting the width of the "id" column
+        self.reservoirlist.column("Name", width=150)  # Setting the width of the "Name" column
+        self.reservoirlist.column("Water_level", width=90)  # Setting the width of the "Water_level" column
 
-        self.reservoirlist.pack(fill = BOTH, expand = 1)
+        self.reservoirlist.pack(fill=BOTH, expand=1)  # Displaying the treeview and filling the available space
 
-        self.reservoirlist.bind("<ButtonRelease-1>", ReservoirREC)
-        displayData()
+        self.reservoirlist.bind("<ButtonRelease-1>", ReservoirREC)  # Binding a function to the treeview's button release event
+        displayData()  # Calling a function to display data in the treeview
         
         ###~~~RESERVOIR Buttons~~~###
+
+        # Creating buttons with specified properties and commands
+
         self.btnAddNew = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Insert New" ,padx = 24, width = 8, height  = 1, command = addData).grid(row = 0, column = 0, padx = 1)
         self.btnDisplay = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Display" ,padx = 24, width = 8, height  = 1, command = displayData).grid(row = 0, column = 1, padx = 1)
         self.btnDelete = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Delete" ,padx = 24, width = 8, height  = 1, command = deleteData).grid(row = 0, column = 2, padx = 1)

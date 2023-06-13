@@ -1316,21 +1316,33 @@ class Reservoir:
 
 
 
+
+
 ###~~~creates Window2 for Customer Login~~~###
+## Class definition for Window2, which represents the Customer Login window
 class Window2:
     def __init__(self, root):
         self.root = root
         blank_space = " "
+
+        # Set the title of the window with a long blank space
         self.root.title(200 * blank_space + "USER")
+
+        # Set the size and position of the window
         self.root.geometry("1920x1080+0+0")
+
+        # Configure the first row and first column to expand with the window
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
 
         
         ###~~~Customer Login Frames~~~###
+
+        # Creating the main frame for the window
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
 
+        # Creating sub-frames within the main frame
         ButtonFrame = Frame(MainFrame, bd = 5, width = 1340, height = 100, relief = RIDGE)
         ButtonFrame.grid(row = 2, column = 0, pady = 8)
 
@@ -1345,18 +1357,25 @@ class Window2:
 
 
         ###~~~Customer Login Frames~~~###
+
+        # Creating and displaying the title label
         self.lblTitle = Label(TitleFrame, font = ('arial', 56, 'bold'), text='User Login', bd = 7)
         self.lblTitle.grid(row = 0, column = 0, padx =132)
 
         ###~~~Customer Label~~~###
+
+        # Creating and displaying the "Enter User ID" label
         self.l1 = Label(TopFrame, font = ('arial', 20, 'bold'), text='Enter User ID: ', width=15, height = 1)  
         self.l1.grid(row=1,column=1)
 
+        # Creating and displaying the text box for user input
         self.t1 = Text(TopFrame, font = ('arial', 20, 'bold'),  height=1, width=10 ,bg='white') 
         self.t1.grid(row=1,column=2)
 
 
         ###~~~Customer Login User Data and Labels~~~###
+
+        # Create StringVar variables to store user data
         my_str1 = StringVar()
         my_str2 = StringVar()
         my_str3 = StringVar()
@@ -1367,53 +1386,64 @@ class Window2:
         my_str8 = StringVar()
         my_str9 = StringVar()
 
+        # Create labels for displaying user data
 
+        # Label for ID
         self.demo_l2 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'ID', width=20,bd = 7, anchor='center')
         self.demo_l2.grid(row=3, column = 1, padx=10)
         self.l2 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str1, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE )  
         self.l2.grid(row=3,column=2)
         
+        # Label for Name
         self.demo_l3 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'Name', width=20,bd = 7, anchor='center')
         self.demo_l3.grid(row=4, column = 1, padx=10)
         self.l3 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str2, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE )  
         self.l3.grid(row=4,column=2)
         
+        # Label for Address
         self.demo_l4 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'Address', width=20,bd = 7, anchor='center')
         self.demo_l4.grid(row=5, column = 1, padx=10)
         self.l4 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str3, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE )  
         self.l4.grid(row=5,column=2)
         
+        # Label for Sector No.
         self.demo_l5 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'Sector No.', width=20,bd = 7, anchor='center')
         self.demo_l5.grid(row=6, column = 1, padx=10)
         self.l5 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str4, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE )  
         self.l5.grid(row=6,column=2)
         
+        # Label for Officer ID
         self.demo_l6 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'Officer ID', width=20,bd = 7, anchor='center')
         self.demo_l6.grid(row=7, column = 1, padx=10)
         self.l6 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str5, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE )  
         self.l6.grid(row=7,column=2)
         
+        # Label for Reservoir ID
         self.demo_l7 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'Reservoir ID', width=20,bd = 7, anchor='center')
         self.demo_l7.grid(row=8, column = 1, padx=10)
         self.l7 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str6, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE )  
         self.l7.grid(row=8,column=2)
         
+        # Label for No. of Connections
         self.demo_l8 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'No. of Connections', width=20,bd = 7, anchor='center')
         self.demo_l8.grid(row=9, column = 1, padx=10)
         self.l8 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str7, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE)  
         self.l8.grid(row=9,column=2)
 
+        #Label for Water Supply Date
         self.demo_l9 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'Water Supply Date', width=20,bd = 7, anchor='center')
         self.demo_l9.grid(row=10, column = 1, padx=10)
         self.l9 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str8, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE)  
         self.l9.grid(row=10,column=2)
 
+        #Label for Bill Due
         self.demo_l10 = Label(TopFrame1, font = ('arial', 20, 'bold'), text = 'Bill Due', width=20,bd = 7, anchor='center')
         self.demo_l10.grid(row=11, column = 1, padx=10)
         self.l10 = Label(TopFrame1, font = ('arial', 20, 'bold'), textvariable=my_str9, width=30, fg='purple', bd = 7, anchor='center',relief=RIDGE)  
         self.l10.grid(row=11,column=2)
 
 
+        # Set the StringVar variables to empty strings
         my_str1.set("")
         my_str2.set("")
         my_str3.set("")
@@ -1425,29 +1455,35 @@ class Window2:
         my_str9.set("")
 
         ###~~~Customer Login Function~~~###
-
+        # Function to fetch and display customer details based on the provided ID
         def my_details(id):
-                try:    
+                try: 
+                    # SQL query to fetch customer details from the 'Customer' table using the provided ID
                     q="SELECT * FROM Customer WHERE id= "+id
                     my_cursor=my_conn.execute(q)
                     data_row=my_cursor.fetchone()
-                    my_str1.set(data_row[0])
-                    my_str2.set(data_row[1])
-                    my_str3.set(data_row[2])
-                    my_str4.set(data_row[3])
-                    my_str5.set(data_row[4])
-                    my_str6.set(data_row[5])
-                    my_str7.set(data_row[6])
+
+                    # Update the StringVar variables with the fetched data
+                    my_str1.set(data_row[0])  # ID
+                    my_str2.set(data_row[1])  # Name
+                    my_str3.set(data_row[2])  # Address
+                    my_str4.set(data_row[3])  # Sector No.
+                    my_str5.set(data_row[4])  # Officer ID
+                    my_str6.set(data_row[5])  # Reservoir ID
+                    my_str7.set(data_row[6])  # No. of Connections
                     
+                    # SQL query to fetch water supply date from the 'Locality' table based on the customer's sector
                     w="SELECT Locality.Water_Supply_Date FROM Locality, Customer WHERE Locality.sector_no = Customer.sector_no AND Customer.id = "+id
                     my_cursor1=my_conn.execute(w)
                     data_row1=my_cursor1.fetchone()
-                    my_str8.set(data_row1)
+                    my_str8.set(data_row1) # Water Supply Date
                     
+                    # SQL query to fetch payment due from the 'Bills' table based on the customer's ID
                     e="SELECT Bills.Payments_Due FROM Bills, Customer WHERE Bills.customer_id = Customer.id AND Customer.id= "+id
                     my_cursor2=my_conn.execute(e)
                     data_row2=my_cursor2.fetchone()
-                    my_str9.set(data_row2)
+                    my_str9.set(data_row2) # Bill Due
+
                 except sqlite3.Error as my_error:
                     print("error: ",my_error)
 
@@ -1457,15 +1493,17 @@ class Window2:
 
 
 ###~~~Creates Window3 for Officer Login~~~###
+# Class definition for Window3, which represents the Officer Login window
 class Window3:
     def __init__(self, root):
         self.root = root
         blank_space = " "
-        self.root.title(200 * blank_space + "Officer Details")
-        self.root.geometry("1920x1080+0+0")
+        self.root.title(200 * blank_space + "Officer Details")  # Set the title of the window
+        self.root.geometry("1920x1080+0+0")  # Set the size and position of the window
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
 
+        # StringVar variables to store the input data
         id = StringVar()
         Name = StringVar()
         Address = StringVar()
@@ -1477,6 +1515,7 @@ class Window3:
 
     ###~~~Officer Login Button~~~###       
 
+        # Function to add data to the database
         def addData():
             if id.get() == "" or Name.get() == "" or Address.get() == "" or sector_no.get() == "" or officer_id.get() == "" or reservoir_id.get() == "" or no_of_connection.get() == "":
                 tkinter.messagebox.askyesno("Error", "Please enter the correct Data")
@@ -1506,7 +1545,7 @@ class Window3:
                     no_of_connection.get()
                 ))
 
-        
+        # Function to display data from the database
         def displayData():
             result = backend.viewCustomerFromOfficerID(officer_id.get())
             if len(result)!=0:
@@ -1514,6 +1553,7 @@ class Window3:
                 for row in result:
                     self.OfficerCustomerList.insert('', END, values = row)
 
+        # Function to reset the input fields
         def iReset():
             self.txtid.delete(0, END)
             self.txtName.delete(0, END)
@@ -1524,7 +1564,7 @@ class Window3:
             self.txtno_of_connection.delete(0, END)
 
         
-
+        # Function to handle the selection of a record from the Officer Customer List tree view
         def OfficerCustomerREC(event):
             global sd
             iReset()
@@ -1541,6 +1581,8 @@ class Window3:
             self.txtno_of_connection.insert(END,sd[6])
 
         ###~~~Officer Frames~~~###        
+
+        # Creating frames for the Officer Login window# Creating frames for the Officer Login window
 
         MainFrame = Frame(self.root, bd = 10, width = 1350, height = 700, relief = RIDGE, bg = "cadet blue")
         MainFrame.grid()
@@ -1574,65 +1616,109 @@ class Window3:
 
         ###~~~Officer Login Title~~~###
     
+        # Create a label for the Officer Login title
+
         self.lblTitle = Label(TitleFrame, font = ('arial', 56, 'bold'), text='Officer\'s Records', bd = 7)
         self.lblTitle.grid(row = 0, column = 0, padx =132)
         
         ###~~~Officer Login Button~~~###
+
+        # Create a button for displaying Officer's details
         self.btnDisplay = Button(ButtonFrame, pady = 1, bd = 4, font = ('arial', 20, 'bold'), text = "Get Details" ,padx = 24, width = 8, height  = 1, command = displayData).grid(row = 0, column = 0, padx = 1)
 
 
 
         ###~~~Officer Login Label~~~###
+
+        # Create a label for entering the Officer ID
         self.lblofficer_id = Label(LabelFrame, font = ('arial',20,'bold'), text = 'Enter Officer ID:', width=15, height = 1, pady = 1, bd = 4,)
         self.lblofficer_id.grid(row=1,column=1)
         
+        # Create an entry field for the Officer ID
         self.txtofficer_id = Entry(LabelFrame, font = ('arial',20,'bold'), width=10 ,bg='white',bd=5, textvariable = officer_id)
         self.txtofficer_id.grid(row=1, column=2)
         
        
-        ###~~~Officer Login Widgets~~~###
+        # Creating widgets for Officer Login
+
+        ###~~~Customer ID Widget~~~###
+
+        # Create a label for Customer ID 
         self.lblid = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Customer ID ', bd = 7, anchor='w', justify=LEFT)
         self.lblid.grid(row=0,column=0,sticky =W,padx=5)
+
+        # Create an entry field for Customer ID
         self.txtid = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = id)
         self.txtid.grid(row=0, column=1)
 
+        ###~~~Customer Name Widget~~~###
+
+        # Create a label for Customer Name
         self.lblName = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Customer Name ', bd = 7, anchor='w', justify=LEFT)
         self.lblName.grid(row=1,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for Customer Name
         self.txtName = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = Name)
         self.txtName.grid(row=1, column=1)
 
+        ###~~~Address Widget~~~###
+
+        # Create a label for Address
         self.lblAddress = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Address ', bd = 7, anchor='w', justify=LEFT)
         self.lblAddress.grid(row=2,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for Address
         self.txtAddress = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = Address)
         self.txtAddress.grid(row=2, column=1)
 
+        ###~~~Sector No Widget~~~###
+
+        # Create a label for Sector No
         self.lblsector_no = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Sector No ', bd = 7, anchor='w', justify=LEFT)
         self.lblsector_no.grid(row=3,column=0,sticky =W,padx=5)
+
+        # Create a combobox for Sector No
         self.cbosector_no = ttk.Combobox(WidgetFrame, width = 39, font = ('arial', 12, 'bold'), state = 'readonly', textvariable = sector_no)
         self.cbosector_no['values'] = ('','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13')
         self.cbosector_no.current(0)
         self.cbosector_no.grid(row = 3, column = 1)
 
+        ###~~~Reservoir ID Widget~~~###
+
+        # Create a label for Reservoir ID
         self.lblreservoir_id = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'Reservoir ID', bd = 7, anchor='w', justify=LEFT)
         self.lblreservoir_id.grid(row=4,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for Reservoir ID
         self.txtreservoir_id = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = reservoir_id)
         self.txtreservoir_id.grid(row=4, column=1)
 
+        ###~~~No. of Connections Widget~~~###
+
+        # Create a label for No. of Connections
         self.lblno_of_connection = Label(WidgetFrame, font = ('arial',12,'bold'), text = 'No. of connections', bd = 7, anchor='w', justify=LEFT)
         self.lblno_of_connection.grid(row=5,column=0,sticky =W,padx=5)
+        
+        # Create an entry field for No. of Connections
         self.txtno_of_connection = Entry(WidgetFrame, font = ('arial',12,'bold'), bd = 5, width = 40, justify = "left", textvariable = no_of_connection)
         self.txtno_of_connection.grid(row=5, column=1)
 
         ###~~~Officer Login TreeView~~~###
 
+        # Create horizontal scrollbar for the treeview
         scroll_x = Scrollbar(TreeViewFrame, orient = HORIZONTAL)
+
+        # Create vertical scrollbar for the treeview
         scroll_y = Scrollbar(TreeViewFrame, orient = VERTICAL)
 
+        # Create a TreeView widget with specified columns and scrollbars
         self.OfficerCustomerList = ttk.Treeview(TreeViewFrame, height = 12, columns = ("id", "Name", "Address", "sector_no", "officer_id", "reservoir_id", "no_of_connection"), xscrollcommand = scroll_x.set,yscrollcommand = scroll_y.set)
 
+        # Pack the scrollbars to the bottom of the TreeViewFrame
         scroll_x.pack(side = BOTTOM, fill = X)
         scroll_y.pack(side = BOTTOM, fill = Y)
 
+        # Set headings for each column
         self.OfficerCustomerList.heading("id", text = "Customer ID")
         self.OfficerCustomerList.heading("Name", text = "Customer Name")
         self.OfficerCustomerList.heading("Address", text = "Customer Address")
@@ -1641,7 +1727,10 @@ class Window3:
         self.OfficerCustomerList.heading("reservoir_id", text = "Reservoir ID")
         self.OfficerCustomerList.heading("no_of_connection", text = "No. of conns.")
 
+        # Set 'show' option to display only the headings
         self.OfficerCustomerList['show'] = 'headings'
+
+        # Set width for each column
         self.OfficerCustomerList.column("id", width = 90)
         self.OfficerCustomerList.column("Name", width =  200)
         self.OfficerCustomerList.column("Address", width = 200)
@@ -1650,11 +1739,16 @@ class Window3:
         self.OfficerCustomerList.column("reservoir_id", width = 90)
         self.OfficerCustomerList.column("no_of_connection", width = 90)
 
+        # Pack the OfficerCustomerList TreeView to fill and expand in the window
         self.OfficerCustomerList.pack(fill = BOTH, expand = 1)
 
+        # Bind the ButtonRelease-1 event to OfficerCustomerREC function
         self.OfficerCustomerList.bind("<ButtonRelease-1>", OfficerCustomerREC)
+
+        # Call the displayData function to populate the TreeView with dat
         displayData()
 
-
+# Check if the current module is being run directly
 if __name__ == '__main__':
+    # Call the main function
     main()

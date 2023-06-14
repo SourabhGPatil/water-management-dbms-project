@@ -6,6 +6,10 @@ In a city or town, most houses get their water supply from the City Corporation 
 ## 🛠 Tools Used
 Python, Tkinter, SQLite3
 
+##  Entity Relationship Diagram
+
+![image](https://github.com/SourabhGPatil/water-management-dbms-project/assets/81312909/a42a259c-a6f5-473f-a27b-aaff91877e48)
+
 
 ------------
 

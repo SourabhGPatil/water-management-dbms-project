@@ -18,4 +18,4 @@ Python, Tkinter, SQLite3
 
 ------------
 
-#### Readme in progress. Sorry for the inconvenience.
+

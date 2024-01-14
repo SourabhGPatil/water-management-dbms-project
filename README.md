@@ -11,7 +11,7 @@ In a city or town, most houses get their water supply from the City Corporation 
 ## 🛠 Tools Used
 - Python
 - Tkinter
-- SQLite3
+- Python’s SQLite3
 
 
 ------------

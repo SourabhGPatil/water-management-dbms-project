@@ -1,4 +1,4 @@
-# AUTOMATION OF THE WATER MANAGEMENT SYSTEM OF A CITY
+# Automation Of The Water Management System Of A City
 ------------
 
 > This project was done as part of the **Database Management System** subject.

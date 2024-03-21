@@ -2,7 +2,7 @@
 
 **Abstract:**
 
-In urban areas, the majority of households rely on their local City Corporation or Water Board for water supply, adhering to predetermined schedules. However, disruptions in this schedule, whether due to technical issues or unforeseen circumstances, can lead to confusion and inconvenience for residents. Our project addresses this challenge by automating the water supply scheduling process. Through a centralized database, users can easily access information regarding their sector's water supply schedule. Moreover, in the event of delays or changes, local officers can update the database, ensuring accurate and timely information dissemination. Additionally, the system provides features such as water bill information and contact details of the sector's water supply contractor, offering a comprehensive solution to household water supply management.
+In urban areas, most households depend on their local City Corporation or Water Board for water supply, which is provided according to predetermined schedules. However, any disruptions in this schedule, whether caused by technical issues or unforeseen circumstances, can lead to confusion and inconvenience for the residents. Our project addresses this challenge by automating the water supply scheduling process. Through a centralized database, users can easily access information regarding their sector's water supply schedule. Moreover, in the event of delays or changes, local officers can update the database, ensuring accurate and timely information dissemination. Additionally, the system provides features such as water bill information and contact details of the sector's water supply contractor, offering a comprehensive solution to household water supply management.
 
 **Introduction:**
 
@@ -12,6 +12,6 @@ Traditionally, residents must manually track water supply schedules and calculat
 
 **Existing Systems:**
 
-Currently, changes in water supply schedules are communicated through newspapers or local news channels, requiring residents to stay updated through various media channels. However, this approach is not foolproof, as individuals may miss important updates, leading to inconvenience. Similarly, while digital payment options exist, they often suffer from usability issues, complicating the billing process for consumers.
+Currently, changes in water supply schedules are communicated through newspapers or local news channels, requiring residents to stay updated through various media channels. However, this approach could be better, as individuals may miss important updates, leading to inconvenience. Similarly, while digital payment options exist, they often need help with usability issues, complicating the billing process for consumers.
 
 Our project addresses these shortcomings by providing a centralized platform for accessing accurate water supply information and simplifying billing procedures. By leveraging technology, we aim to enhance the efficiency and convenience of water management for urban residents.

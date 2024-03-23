@@ -16,11 +16,6 @@ Currently, changes in water supply schedules are communicated through newspapers
 
 Our project addresses these shortcomings by providing a centralized platform for accessing accurate water supply information and simplifying billing procedures. By leveraging technology, we aim to enhance the efficiency and convenience of water management for urban residents.
 
-## Water Supply Management System
-
-### Overview
-This project aims to develop a Water Supply Management System using Python for backend operations and Tkinter for the frontend graphical user interface (GUI). The system facilitates efficient management of water supply schedules for different areas within a city, focusing on timely delivery and effective communication with residents.
-
 ### Methodology
 
 #### Tools Used

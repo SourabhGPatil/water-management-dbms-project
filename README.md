@@ -22,6 +22,8 @@ Our project addresses these shortcomings by providing a centralized platform for
 - **Python**: Utilized as the primary programming language for database connectivity and backend operations.
 - **SQLite3**: Integrated with the inbuilt SQLite3 module of Python for database management.
 - **Tkinter**: Employed as the GUI toolkit to develop the frontend interface for the application.
+- 
+#### ER Diagram
 
 #### Backend Logic
 The backend logic involves the creation, manipulation, and deletion of data within the database. Key functionalities include:

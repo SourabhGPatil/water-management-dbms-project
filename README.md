@@ -23,6 +23,16 @@ Our project addresses these shortcomings by providing a centralized platform for
 - **SQLite3**: Integrated with the inbuilt SQLite3 module of Python for database management.
 - **Tkinter**: Employed as the GUI toolkit to develop the frontend interface for the application.
 
+### Tables and Fields present in the database
+```OFFICER (id, Name, sector_no)
+RESERVOIR (id, Name, Water_level)
+BILL (id, customer_id, Payments_Due, due_Date)
+LOCALITY (sector_no, Area_Name, Water_Supply_Date, officer_id,
+reservoir_id)
+CUSTOMER (id, Name, Address, sector_no, officer_id, reservoir_id,
+no_of_connection)
+```
+
 #### ER Diagram
 
 #### Backend Logic

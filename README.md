@@ -74,9 +74,4 @@ The Water Supply Management System addresses the growing challenges of water res
 - **Predictive Analysis**: Implement predictive algorithms to forecast water demand and optimize supply schedules.
 - **Geospatial Visualization**: Incorporate geospatial visualization tools for better understanding and management of water distribution networks.
 
-### Contributors
-- Sourabh Patil
-- Veer Jadimath
-
-
 

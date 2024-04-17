@@ -33,7 +33,9 @@ CUSTOMER (id, Name, Address, sector_no, officer_id, reservoir_id,
 no_of_connection)
 ```
 
-#### ER Diagram
+### ER Diagram
+![image](https://github.com/SourabhGPatil/water-management-dbms-project/assets/81312909/fb7f7f1c-865d-4b95-8319-aad60692854c)
+
 
 #### Backend Logic
 The backend logic involves the creation, manipulation, and deletion of data within the database. Key functionalities include:
